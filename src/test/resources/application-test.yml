@@ -1,0 +1,21 @@
+# test
+spring:
+  config:
+    activate:
+      on-profile: test
+  security:
+    user:
+      name: admin
+      password: 9b7d907f-65d2-4d16-bf4a-3123eb4d8462
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:test;
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    generate-ddl: true
+    show-sql: false
+
+server:
+  port: 8080
+  servlet:
+    context-path: /rest

@@ -1,0 +1,34 @@
+spring:
+  application:
+    name: Snapshots
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/snapshots
+    username: postgres
+    password: root
+    hikari:
+      maximum-pool-size: 16
+      auto-commit: false
+      connection-timeout: 10000
+      idle-timeout: 60000
+      minimum-idle: 2
+  jpa:
+    show-sql: false
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate.format_sql: true
+      hibernate.jdbc.lob.non_contextual_creation: true
+  liquibase:
+    change-log: classpath:db/liquibase-changelog-master.xml
+
+# swagger
+springdoc:
+  swagger-ui:
+    path=/swagger-ui.html
+
+# server
+server:
+  port: 8080
+  servlet:
+    context-path: /rest

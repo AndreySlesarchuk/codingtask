@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.3.xsd">
+
+  <changeSet id="snapshot_initial.ddl" author="andrey.slesarchuk">
+    <comment>
+      Initial schema
+    </comment>
+    <sql>
+      CREATE TABLE users
+      (
+        id   BIGSERIAL PRIMARY KEY,
+        name VARCHAR(128) NOT NULL,
+        role VARCHAR(8)
+      );
+
+      CREATE TABLE snapshots
+      (
+        primary_key VARCHAR(256) NOT NULL,
+        name        TEXT         NOT NULL,
+        description TEXT,
+        updated_time TIMESTAMP,
+        CONSTRAINT snapshots_pk PRIMARY KEY (primary_key),
+        CONSTRAINT snapshots_primary_key UNIQUE (primary_key)
+      );
+      CREATE UNIQUE INDEX snapshots_primary_key ON snapshots (primary_key);
+
+    </sql>
+  </changeSet>
+</databaseChangeLog>
